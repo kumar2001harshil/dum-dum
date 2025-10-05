@@ -1,0 +1,148 @@
+<!-- File: src/main/content/jcr_root/apps/firstdata-core/components/content/roi-calculator-v2/roi-calculator-v2.html -->
+<!-- Add wrapper around the slider input (example snippet) -->
+<div class="slider-wrapper">
+  <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+  <input class="roi-range" type="text" name="roi" value="" />
+</div>
+
+<!-- Add or include the CSS below in the component clientlib CSS (e.g. clientlibs/editor/css/roi-shimmer.css) -->
+<style>
+/* File: clientlibs/editor/css/roi-shimmer.css */
+.slider-wrapper {
+  position: relative;
+  display: block; /* keep layout */
+  min-height: 48px; /* adjust to slider height */
+}
+
+/* Keep the plugin hidden until loaded for smoother reveal */
+.slider-wrapper .irs { /* Ion.RangeSlider container */
+  opacity: 0;
+  transition: opacity 250ms ease;
+  visibility: hidden;
+}
+
+/* Shimmer skeleton style */
+.slider-skeleton {
+  position: absolute;
+  inset: 0; /* top:0;right:0;bottom:0;left:0; */
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f3f3f3 0%, #ececec 50%, #f3f3f3 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* small visual tweak to place skeleton only over the slider area, not entire wrapper height */
+.slider-wrapper .slider-skeleton {
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: calc(100% - 8px);
+}
+
+/* When loaded: hide skeleton and reveal slider smoothly */
+.slider-wrapper.loaded .slider-skeleton {
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  visibility: hidden;
+}
+.slider-wrapper.loaded .irs {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* shimmer keyframes */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+</style>
+
+<!-- Add this JS into your component clientlib JS (e.g. clientlibs/editor/js/ion-range-shimmer.js) and ensure it loads after jQuery and before/after your slider init code -->
+<script type="text/javascript">
+/* File: clientlibs/editor/js/ion-range-shimmer.js */
+(function () {
+  'use strict';
+
+  // Utility to remove skeleton for a wrapper element
+  function markLoaded(wrapper) {
+    if (!wrapper.classList.contains('loaded')) {
+      wrapper.classList.add('loaded');
+    }
+  }
+
+  // Observe creation of .irs inside a wrapper; fallback timeout
+  function attachObserverToWrapper(wrapper) {
+    var input = wrapper.querySelector('input');
+    if (!input) return;
+
+    // If ionRangeSlider already initialized, mark loaded
+    // check plugin data or existence of immediate .irs sibling
+    if (input.dataset && input.dataset.ionRangeSlider || wrapper.querySelector('.irs')) {
+      markLoaded(wrapper);
+      return;
+    }
+
+    // If slider is initialized via an onStart option, plugin will call input.data('ionRangeSlider') or create .irs
+    // Observe childList for creation of .irs OR attribute changes on input (some initializers set data)
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (m) {
+        // if plugin added .irs element
+        if (wrapper.querySelector('.irs')) {
+          markLoaded(wrapper);
+          observer.disconnect();
+        }
+        // some initializers set data attributes on the input; detect dataset/attributes changes
+        if (m.type === 'attributes' && (input.dataset && input.dataset.ionRangeSlider)) {
+          markLoaded(wrapper);
+          observer.disconnect();
+        }
+      });
+    });
+
+    observer.observe(wrapper, { childList: true, subtree: true, attributes: true });
+
+    // Fallback: if nothing happens in 3000ms, reveal slider to avoid permanent skeleton
+    var fallback = setTimeout(function () {
+      markLoaded(wrapper);
+      observer.disconnect();
+    }, 3000);
+
+    // When loaded via observer, clear fallback
+    var originalMark = markLoaded;
+    markLoaded = function (w) {
+      if (!w.classList.contains('loaded')) {
+        w.classList.add('loaded');
+      }
+      clearTimeout(fallback);
+    };
+  }
+
+  // Initialize observers for all wrappers on DOM ready
+  function initShimmers() {
+    var wrappers = document.querySelectorAll('.slider-wrapper');
+    if (!wrappers || wrappers.length === 0) return;
+    for (var i = 0; i < wrappers.length; i++) {
+      attachObserverToWrapper(wrappers[i]);
+    }
+  }
+
+  // Also provide a public function to be called from Ion.RangeSlider onStart
+  window.ionRangeSliderReveal = function (inputEl) {
+    // Accept either input element or selector
+    var input = inputEl && (inputEl.jquery ? inputEl[0] : inputEl);
+    if (!input) return;
+    var wrapper = input.closest('.slider-wrapper');
+    if (wrapper) wrapper.classList.add('loaded');
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShimmers);
+  } else {
+    initShimmers();
+  }
+})();
+</script>
