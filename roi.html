@@ -1,0 +1,650 @@
+<sly data-sly-use.clientlibs="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlibs.css @ categories='firstdata-core.roi-calculator-version-two'}"/>
+</sly>
+
+<title>Snappay-ROI calculator</title>
+
+<div class="mobile-flex">
+    <div class="roi__superheading">
+        <div class="container position-relative">
+            <h2><span>${properties.superheadinglabel}</span> ${properties.superheading}</h2>
+            <div class="calculationView">
+                <div class="resultview_header">
+            <span class="result-arrow">
+              <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 10.3195L2 10.3195" stroke="white" stroke-width="2" />
+                <path d="M11.2554 19.5562L2.03744 10.3382L11.2554 1.12029" stroke="white" stroke-width="2" />
+              </svg>
+            </span> ${properties.results}
+                </div>
+                <div class="roi__viewsec">
+                    <div>
+                        <div class="mb-20">
+                            <div>${properties.totalbenefits}
+                                <span data-toggle="tooltip" title="${properties.totalbenefits}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-benefit">
+                                <span>$</span>
+                                <span id="totalBenefits"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex tab_view result_page mgap-5">
+                        <div class="mb-20 result_field" id="l2l3view">
+                            <div>${properties.l2l3relativesavings}
+                                <span data-toggle="tooltip" title="${properties.l2l3relativesavingstooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span id="l2l3savings"></span></div>
+                            </div>
+                        </div>
+                        <div class="mb-20 result_field" id="DSOimprovementview">
+                            <div>${properties.dsoimprovement}
+                                <span data-toggle="tooltip" title="${properties.dsoimprovementtooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span id="DSOimprovement">0</span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="mb-20 result_field" id="surchargeview" style="display: none;">
+                            <div>${properties.surchargesavings}
+                                <span data-toggle="tooltip" title="${properties.surchargesavingstooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span id="surChargesavings"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex tab_view result_page mgap-5">
+                        <div class="mb-20 result_field">
+                            <div>${properties.baddebtreduction}
+                                <span data-toggle="tooltip" title="${properties.baddebtreductiontooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span id="baddebtReduction"></span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="mb-20 result_field">
+                            <div>${properties.checkaccpetancesavings}
+                                <span data-toggle="tooltip" title="${properties.checkacceptancesavingstooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span
+                                    id="checkacceptancesavings"></span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex tab_view result_page mgap-5">
+                        <div class="mb-20 result_field" id="productivityImprovementview">
+                            <div>${properties.productivityimprovements}
+                                <span data-toggle="tooltip" title="${properties.productivityimprovementstooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <div class="slider-skeleton result-shimmer shimmer loading" aria-hidden="true"></div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span
+                                    id="productivityImprovement"></span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="mb-20 result_field" id="savingsonCCview" style="display:none;">
+                            <div>${properties.creditcardsavings}
+                                <span data-toggle="tooltip" title="${properties.creditcardsavingstooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="roi__viewsec-label"><span class="f-18 fz-18">$</span><span id="savingsonCC"></span></div>
+                        </div>
+                    </div>
+                    <button id="marketo_formTrigger" class="outline-experts">${properties.resultsbutton} ></button>
+                </div>
+                <div class="form-result" data-sly-use.roiformConfig="com.firstdata.aem.core.models.ROIFormConfigModel">
+                    <form id=${roiformConfig.formId} class="result_form">
+                        <p>${properties.formtitle}</p>
+                    </form>
+                    <div class="thank_u_page" style="display:none;">
+                        <p>
+                            Thank you for using our online calculator to estimate your company’s savings.
+                            <br>
+                            The results you requested will be sent to the email provided.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile_roi__superheading">
+        <div class="container position-relative">
+            <h2><span>${properties.superheadinglabel}</span> ${properties.superheading}</h2>
+        </div>
+    </div>
+    <div class="step-content">
+        <div class="container  position-relative">
+            <div class="inner_container">
+                <div class="inner_container_left">
+                    <ul>
+                        <li><a class="step_1 active" href="#step-1">1</a><span class="line"></span></li>
+                        <li><a class="step_2" href="#step-2">2</a><span class="line"></span></li>
+                        <li><a class="step_3" href="#step-3">3</a></li>
+                    </ul>
+                </div>
+                <div class="inner_container_right">
+                    <div class="step-1 step-lists" id="step-1">
+                        <div class="roi__pageheading">${properties.firststepheading}</div>
+                        <div class="d-flex tab_view">
+                            <div>
+                                <form class="roi__input" id="revenuecheck">
+                                    <div class="py-2">
+                                        ${properties.annualrevenue}
+                                        <span data-toggle="tooltip" title="${properties.annualrevenuetooltip}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                             class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path
+                                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                      </span>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div class="revenue_value">
+                                        <span class="f-18">$</span>
+                                        <span class="roi__input--highlight" id="revenueAnnual"></span>
+                                        <span class="f-18  ps-1 roi__input--notation">M</span>
+                                    </div>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <input type="text" class="revenueAnnual" />
+                                    </div>
+                                </form>
+                            </div>
+                            <form class="roi__input ipad_view_gap" id="currentDSOcheck">
+                                <div class="py-2">
+                                    ${properties.currentdso}
+                                    <span class="tool_tip_1" data-toggle="tooltip" title="${properties.currentdsotooltip}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                           class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                      </svg>
+                    </span>
+                                </div>
+                                <div class="slider-wrapper">
+                                    <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                <div class="">
+                                    <span class="roi__input--highlight" id="currentDSO"></span>
+                                    <span class="f-18 ps-1 roi__input--notation-alt">Days</span>
+                                </div>
+                                </div>
+                                <div class="slider-wrapper">
+                                    <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                <input type="text" class="currentDSO" />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="roi__group-section">
+                            <div class="mb-3">
+                                ${properties.paymentmix}
+                                <span class="tool_tip_2" data-toggle="tooltip" title="${properties.paymentmixtooltip}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                         class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                      <path
+                              d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                    </svg>
+                  </span>
+                            </div>
+                            <div class="d-flex tab_view gap-5 m-gap-5  paymentMix ">
+                                <div class="roi__groupinput">
+                                    <div class="py-2">
+                                        ${properties.ach}
+                                        <span class="tool_tip_3" data-toggle="tooltip" title="${properties.achtooltip}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                             class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path
+                                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                      </span>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div class="">
+                                        <span class="roi__groupinput--highlight" id="revenueACH"></span>
+                                        <span class="f-18 ps-1">%</span>
+                                    </div>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <input type="text" class="revenueACH" />
+                                    </div>
+                                </div>
+                                <div class="roi__groupinput">
+                                    <div class="py-2">
+                                        ${properties.creditcard}
+                                        <span data-toggle="tooltip" title="${properties.creditcardtooltip}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                             class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path
+                                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                      </span>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div class="">
+                                        <span class="roi__groupinput--highlight" id="revenueCreditcard"></span>
+                                        <span class="f-18  ps-1">%</span>
+                                    </div>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <input type="text" class="revenueCreditcard" />
+                                    </div>
+                                </div>
+                                <div class="roi__groupinput revenueothersec">
+                                    <div class="py-2">
+                                        ${properties.otherlabel}
+
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div class="">
+                                        <span class="roi__input--highlight" id="revenueOther"></span>
+                                        <span class="f-18  ps-1">%</span>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-2 step-lists" id="step-2">
+                        <div class="roi__pageheading">${properties.secondscreenheading}</div>
+                        <div class="roi__achsection">
+                            <div class="roi__group-section step_2_style">
+                                <div class="pb-3 f-16">${properties.achce} <span class="tool_tip_4" data-toggle="tooltip" title="${properties.achcetooltip}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                           class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                      </svg>
+                    </span></div>
+                                <div class="d-flex tab_view gap-3 paymentMix">
+                                    <form class="roi__groupinput" id="averageACHcheck">
+                                        <div class="py-2">
+                                            ${properties.avticketsize}
+                                            <span data-toggle="tooltip" title="${properties.avticketsizetooltip}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                               class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                          </svg>
+                        </span>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <div><span class="f-18">$</span><span class="roi__groupinput--highlight" id="averageACH"></span>
+                                        </div>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <input type="text" class="averageACH" />
+                                        </div>
+                                    </form>
+                                    <form class="roi__groupinput" id="averageACHfeecheck">
+                                        <div class="py-2">
+                                            ${properties.currentAchProcessing}
+                                            <span data-toggle="tooltip" title="${properties.achprocessingToolTip}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                               class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                          </svg>
+                        </span>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <div><span class="f-18">$</span><span class="roi__groupinput--highlight"
+                                                                              id="averageACHfee"></span>
+                                        </div>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <input type="text" class="averageACHfee" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-flex tab_view justify-content-end  border-radius-btm btn_alignment">
+
+                                    <div class="custom-control custom-switch flex_class ppedevice-switch">
+                                        <div class="button_alignment">
+                                            <input class="custom-control-input" type="checkbox" id="cpcpTrans">
+                                            <label class="custom-control-label ps-2" for="cpcpTrans">${properties.cpcptdevice}
+                                            </label>
+                                            <span data-toggle="tooltip"
+                                                  title="${properties.cpcptdeviceToolTip}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                               class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                          </svg>
+                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="mx-5"></div>
+                                    <!-- <div class="mx-3"></div> -->
+                                </div>
+                            </div>
+                            <div class="roi__group-section">
+                                <div class="pb-3 f-16">${properties.creditcardce} <span data-toggle="tooltip" title="${properties.creditcardcetooltip}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                           class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                      </svg>
+                    </span></div>
+                                <div class="d-flex tab_view gap-3 paymentMix border-radius-top">
+                                    <form class="roi__groupinput" id="averageCCfeecheck">
+                                        <div class="py-2">
+                                            ${properties.currentCCProcessing}
+                                            <span data-toggle="tooltip" title="${properties.ccprocessingToolTip}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                               class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                          </svg>
+                        </span>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <div><span class="roi__groupinput--highlight" id="averageCCfee"></span><span class="f-18  ps-1">%</span>
+                                        </div>
+                                        </div>
+                                        <div class="slider-wrapper">
+                                            <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                        <input type="text" class="averageCCfee" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="d-flex tab_view justify-content-end  border-radius-btm btn_alignment">
+
+                                    <div class="custom-control custom-switch flex_class ppedevice-switch">
+                                        <div class="button_alignment">
+                                            <input class="custom-control-input" type="checkbox" id="ppedevice">
+                                            <label class="custom-control-label ps-2" for="ppedevice">${properties.p2pedevice}
+                                            </label>
+                                            <span data-toggle="tooltip"
+                                                  title="${properties.p2pedeviceToolTip}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                               class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path
+                                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                          </svg>
+                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="mx-5"></div>
+                                    <!-- <div class="mx-3"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-3 step-lists" id="step-3">
+                        <div class="roi__pageheading">${properties.laststepheading}</div>
+                        <div class="roi__resultsec">
+                            <div class="d-flex tab_view ">
+                                <div class="roi__input">
+                                    <div class="py-2">
+                                        ${properties.productivityimprovements}
+                                        <span data-toggle="tooltip" title="${properties.productivityimprovementstooltip}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                             class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path
+                                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                      </span>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div><span class="roi__input--highlight" id="prodConfidence"></span><span class="f-18 ps-1">%</span>
+                                    </div>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <input type="text" class="prodConfidence" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex tab_view mt-5">
+                                <form class="roi__input" id="arftesizecheck">
+                                    <div class="py-2">
+                                        ${properties.arftesize}
+                                        <span data-toggle="tooltip" title="${properties.arftesizetooltip}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                             class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                          <path
+                                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </svg>
+                      </span>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <div><span class="roi__input--highlight" id="arftesize"></span></div>
+                                    </div>
+                                    <div class="slider-wrapper">
+                                        <div class="slider-skeleton shimmer loading" aria-hidden="true"></div>
+                                    <input type="text" class="arftesize" />
+                                    </div>
+                                </form>
+                                <div class="custom-control custom-switch mx-3 mb-mr-0 new_edit surcharge-switch">
+                                    <input class="custom-control-input" type="checkbox" id="surcharge">
+                                    <label class="custom-control-label ps-2 mb-mr-0" for="surcharge">${properties.surcharge}
+                                    </label>
+                                    <span data-toggle="tooltip" title="${properties.surchargeToolTip}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
+                           class="bi bi-question-circle tooltip-icon" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                                d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                      </svg>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_part">
+        <div class="container">
+            <div class="footer_content">
+                ${properties.disclaimer @context='html'}
+            </div>
+        </div>
+    </div>
+    <!--  <div class="footer-fiserv footer aem-GridColumn aem-GridColumn&#45;&#45;default&#45;&#45;12">-->
+    <!--    <footer class="fiserv-footer">-->
+    <!--      <div class="fiserv-footer__top row">-->
+    <!--        <div class="container">-->
+    <!--          <div class="row">-->
+    <!--            <div class="col-lg-5 col-md-12 col-sm-12">-->
+    <!--              <div class="fiserv-footer__col-left">-->
+    <!--                <div class="fiserv-footer__logo">-->
+    <!--                  <a href="https://merchants.fiserv.com" target="_self">-->
+    <!--                    <img alt="Fiserv logo" src="/content/dam/firstdata/india/en/fiserv/header/logos/Fiserv-logo.svg">-->
+    <!--                  </a>-->
+    <!--                </div>-->
+    <!--                <div class="fiserv-footer__description">-->
+    <!--                  <p>Need help finding the best<br>-->
+    <!--                    solution for your business?</p>-->
+    <!--                  <p><a href="https://merchants.fiserv.com/en-us/connect/"><span class="link-icon">Connect</span></a></p>-->
+    <!--                </div>-->
+    <!--                <div class="fiserv-footer__social-icon">-->
+    <!--                  <ul>-->
+    <!--                    <li><a href="https://www.linkedin.com/company/fiserv/" target="_blank">-->
+    <!--                      <img alt="linkedin" src="/content/dam/firstdata/br/pt/images/icons/new-icons/LinkedIn.svg">-->
+    <!--                    </a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://twitter.com/fiserv" target="_blank">-->
+    <!--                      <img alt="twitter" src="/content/dam/firstdata/br/pt/images/icons/new-icons/Twitter.svg">-->
+    <!--                    </a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://www.facebook.com/Fiserv/" target="_blank">-->
+    <!--                      <img alt="facebook" src="/content/dam/firstdata/br/pt/images/icons/new-icons/Facebook.svg">-->
+    <!--                    </a>-->
+    <!--                    </li>-->
+    <!--                  </ul>-->
+    <!--                </div>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-lg-7 col-sm-12 fiserv-footer__navigation-links">-->
+    <!--              <div class="row">-->
+    <!--                <div class="col fiserv-footer__links">-->
+    <!--                  <ul>-->
+    <!--                    <li><a href="https://www.fiserv.com" target="_blank">About Fiserv</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://investors.fiserv.com/" target="_blank">Investors</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://www.careers.fiserv.com/" target="_blank">Careers</a>-->
+    <!--                    </li>-->
+    <!--                  </ul>-->
+    <!--                </div>-->
+
+    <!--                <div class="col fiserv-footer__links">-->
+    <!--                  <ul>-->
+    <!--                    <li><a href="https://carat.fiserv.com" target="_blank">Carat</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://clover.com" target="_self">Clover</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://merchants.fiserv.com/en-us/about-first-data/first-data-partners/" target="_blank">Partners</a>-->
+    <!--                    </li>-->
+    <!--                  </ul>-->
+    <!--                </div>-->
+    <!--                <div class="col fiserv-footer__links">-->
+    <!--                  <ul>-->
+    <!--                    <li><a href="https://merchants.fiserv.com/en-us/resources/" target="_self">Resources</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://developer.fiserv.com/merchants" target="_blank">Developers</a>-->
+    <!--                    </li>-->
+    <!--                    <li><a href="https://merchants.fiserv.com/en-us/global-selector/" target="_self">United States / Change</a>-->
+    <!--                    </li>-->
+    <!--                  </ul>-->
+    <!--                </div>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="fiserv-footer__bottom">-->
+    <!--        <div class="container">-->
+    <!--          <div class="row">-->
+    <!--            <div class="fiserv-footer__bottom-trademark">-->
+    <!--              <div class="grey-600"><p>©2022 Fiserv, Inc. Fiserv is a registered trademark of Fiserv, Inc. All trademarks referenced here are the property of the respective owners. Merchant services provided by First Data Merchant Services LLC, a registered Independent Sales Organization of Wells Fargo Bank, N.A., Concord, CA; Deutsche Bank AG, New York, NY; PNC Bank N.A., Pittsburgh, PA; MVB Bank, Fairmont, WV; and Pathward, N.A., Sioux Falls, SD.</p>-->
+    <!--              </div>-->
+    <!--            </div>-->
+    <!--            <div class="fiserv-footer__bottom-policy-links">-->
+    <!--              <ul>-->
+    <!--                <li><a class="grey-600" href="https://merchants.fiserv.com/en-us/privacy/" target="_self">Privacy Notice </a></li>-->
+
+    <!--                <li><a class="grey-600" href="https://www.fiserv.com/en/legal/cookie-statement.html" target="_blank">Cookie Notice  </a></li>-->
+
+    <!--                <li><a class="grey-600" href="https://merchants.fiserv.com/en-us/legal/" target="_self">Legal</a></li>-->
+
+    <!--                <li><a class="grey-600" href="https://www.fiserv.com/en/about-fiserv/terms-of-use.html" target="_blank">Terms of Use</a></li>-->
+
+    <!--                <li><a class="grey-600" href="https://merchants.fiserv.com/en-us/sitemap/" target="_self">Site Map</a></li>-->
+    <!--              </ul>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </footer>-->
+    <!--  </div>-->
+</div>
+
+
+<!-- HTML content for PDF creation -->
+
+<sly data-sly-use.clientlibs="/libs/granite/sightly/templates/clientlib.html">
+  <sly data-sly-call="${clientlibs.js @ categories='firstdata-core.roi-calculator-version-two'}"/>
+</sly>
+
+
+
+
