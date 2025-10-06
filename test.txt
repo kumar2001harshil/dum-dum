@@ -54,12 +54,12 @@
 // js
 document.querySelectorAll('.slider-skeleton.shimmer').forEach(el => el.style.display = 'block');
 
-    const shimmerInterval = setInterval(() => {
-        if (document.querySelector('.irs')) {
-            document.querySelectorAll('.slider-skeleton.shimmer').forEach(el => el.style.display = 'none');
-            clearInterval(shimmerInterval);
-        }
-    }, 200);
+const shimmerInterval = setInterval(() => {
+    if (document.querySelector('.irs')) {
+        document.querySelectorAll('.slider-skeleton.shimmer').forEach(el => el.style.display = 'none');
+        clearInterval(shimmerInterval);
+    }
+}, 200);
 
 
 
