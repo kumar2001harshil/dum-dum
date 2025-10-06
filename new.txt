@@ -1,0 +1,82 @@
+// css
+.slider-wrapper {
+  position: relative;
+  display: block;
+  min-height: 48px;
+}
+
+/* Keep the plugin hidden until loaded for smoother reveal */
+.slider-wrapper .irs {
+  opacity: 0;
+  transition: opacity 250ms ease;
+  visibility: hidden;
+}
+
+/* Shimmer skeleton style */
+.slider-skeleton {
+  position: absolute;
+  inset: 0;
+  top: 5px;
+  height: calc(100% - 10px);
+  width: calc(100% + 2px);
+  border-radius: 6px;
+  background: linear-gradient(to right, #e6e6e6 5%, #cccccc 25%, #e6e6e6 35%);
+  background: linear-gradient(
+                  90deg,
+                  #f2f2f2 0%,
+                  #e6e6e6 20%,
+                  #f0f0f0 40%,
+                  #e6e6e6 60%,
+                  #f2f2f2 100%
+                );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slider-skeleton.slider-range{
+    top: 10px;
+}
+
+.slider-skeleton.result-shimmer{
+    top: 4px;
+    width: calc(100% - 20px);
+}
+
+.roi__viewsec-benefit{
+    min-height: 46px;
+}
+
+/* When loaded: hide skeleton and reveal slider smoothly */
+.slider-wrapper.loaded .slider-skeleton {
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.slider-wrapper.loaded .irs {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* shimmer keyframes */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+
+// js
+document.querySelectorAll('.slider-skeleton.shimmer').forEach(el => el.style.display = 'block');
+
+const shimmerInterval = setInterval(() => {
+    if (document.querySelector('.irs')) {
+        document.querySelectorAll('.slider-wrapper').forEach(el => el.classList.add('loaded'));
+        document.querySelectorAll('input.slider-input').forEach(el => el.style.display = 'block');
+//            document.querySelectorAll('.slider-skeleton.shimmer').forEach(el => el.style.display = 'none');
+        clearInterval(shimmerInterval);
+    }
+}, 200);
